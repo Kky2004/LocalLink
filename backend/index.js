@@ -41,7 +41,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "http://172.27.234.120:5173",
+      "https://locallink-frontend.onrender.com",
     ],
     credentials: true,
   })
