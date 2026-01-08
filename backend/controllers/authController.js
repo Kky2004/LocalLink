@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.cookie("token", token, {
+       res.cookie("token", token, {
   httpOnly: true,           // cannot be accessed by JS
   secure: true,             // HTTPS only
   sameSite: "none",         // allow cross-site requests
@@ -74,12 +74,12 @@ exports.login = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.cookie("token", token, {
+        res.cookie("token", token, {
   httpOnly: true,           // cannot be accessed by JS
   secure: true,             // HTTPS only
   sameSite: "none",         // allow cross-site requests
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-});
+        });
 
     res.status(200).json({
       user: {

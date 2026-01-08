@@ -192,7 +192,7 @@ const ConsumerDashboard = ({ user }) => {
             </p>
             {stats?.pendingPayments > 0 && (
               <button
-                onClick={() => (window.location.href = "/my-bookings")}
+                onClick={() => navigate("/my-bookings")}
                 className="mt-4 w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 font-semibold shadow-lg"
               >
                 Pay ₹{stats?.pendingPayments?.toFixed(0)} Now
