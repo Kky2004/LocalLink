@@ -57,7 +57,7 @@ export default function MyBookings() {
 
       const options = {
         key: razorpayKey,
-        amount: order.amount * 100,
+        amount: order.amount,
         currency: "INR",
         name: "LocalLink",
         description: `Payment for ${booking.serviceName}`,
@@ -74,7 +74,6 @@ export default function MyBookings() {
             });
 
             await bookingService.updatePaymentStatus(booking._id, "COMPLETED");
-            // ✅ UPDATE UI STATE IMMEDIATELY
             setBookings((prev) =>
               prev.map((b) =>
                 b._id === booking._id
@@ -518,19 +517,12 @@ export default function MyBookings() {
                         {new Date(booking.scheduledDate).toLocaleDateString()}
                       </span>
                     </div>
-                    {/* <div className="flex items-center text-gray-600">
-                      <Clock className="h-5 w-5 mr-2" />
-                      <span>{booking.scheduledTime}</span>
-                    </div> */}
+                   
                     <div className="flex items-center text-gray-600">
                       <MapPin className="h-5 w-5 mr-2" />
                       <span>{booking.address}</span>
                     </div>
-                    {/* <div className="flex items-center text-gray-600">
-                      <span className="font-semibold">
-                        ₹{booking.price || booking.totalAmount || 0}
-                      </span>
-                    </div> */}
+                   
                   </div>
 
                   {booking.service.description && (
