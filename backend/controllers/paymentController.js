@@ -1,4 +1,4 @@
-const paymentService =require("../Service/paymentService");
+const paymentService =require("../service/paymentService");
 
 // Create Razorpay order
 exports.createOrder = async (req, res) => {
