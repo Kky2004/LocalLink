@@ -16,10 +16,10 @@ import MyBooking from "./Pages/MyBookings";
 import Orders from "./Pages/Orders";
 import MyServices from "./Pages/MyServices";
 import BookingDetail from "./Pages/BookingDetail";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./Components/layout/Footer";
+import Notfound from "./Components/Notfound";
 
 
 
@@ -92,11 +92,13 @@ function App() {
         </ProtectedRoute>
       }/>
 
+       <Route path="*" element={<Notfound/>} />
+
     </Routes>
      </main>
      <Footer/>
 
-       {/* 👇 MUST BE HERE */}
+       {/*  MUST BE HERE */}
         <ToastContainer 
           position="top-center"
           autoClose={3000}

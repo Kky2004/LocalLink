@@ -12,7 +12,7 @@ export default function MyBookings() {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [showBookDetail, setShowBookDetail] = useState(false);
-const [selectedBooking, setSelectedBooking] = useState(null);
+  const [selectedBooking, setSelectedBooking] = useState(null);
 
   const handleCancelBooking = async (bookingId) => {
     const result = await Swal.fire({
@@ -74,6 +74,18 @@ const [selectedBooking, setSelectedBooking] = useState(null);
             });
 
             await bookingService.updatePaymentStatus(booking._id, "COMPLETED");
+            // ✅ UPDATE UI STATE IMMEDIATELY
+            setBookings((prev) =>
+              prev.map((b) =>
+                b._id === booking._id
+                  ? {
+                      ...b,
+                      paymentStatus: "COMPLETED",
+                      paymentAmount: totalAmount,
+                    }
+                  : b
+              )
+            );
 
             const providerAmount = serviceAmount;
 
@@ -110,8 +122,6 @@ const [selectedBooking, setSelectedBooking] = useState(null);
         modal: {
           ondismiss: function () {
             toast.info("Payment cancelled");
-
-            
           },
         },
         notes: {
@@ -394,10 +404,11 @@ const [selectedBooking, setSelectedBooking] = useState(null);
     );
   }
 
-  const serviceAmount =
-  Number(selectedBooking?.price || selectedBooking?.totalAmount || 0);
-const platformFee = Math.round(serviceAmount * 0.05);
-const totalAmount = serviceAmount + platformFee;
+  const serviceAmount = Number(
+    selectedBooking?.price || selectedBooking?.totalAmount || 0
+  );
+  const platformFee = Math.round(serviceAmount * 0.05);
+  const totalAmount = serviceAmount + platformFee;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -420,7 +431,7 @@ const totalAmount = serviceAmount + platformFee;
                 : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
             }`}
           >
-            All 
+            All
           </button>
           <button
             onClick={() => setFilter("pending")}
@@ -430,7 +441,7 @@ const totalAmount = serviceAmount + platformFee;
                 : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
             }`}
           >
-            Pending 
+            Pending
           </button>
           <button
             onClick={() => setFilter("confirmed")}
@@ -440,7 +451,7 @@ const totalAmount = serviceAmount + platformFee;
                 : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
             }`}
           >
-            Confirmed 
+            Confirmed
           </button>
           <button
             onClick={() => setFilter("completed")}
@@ -450,7 +461,7 @@ const totalAmount = serviceAmount + platformFee;
                 : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
             }`}
           >
-            Completed 
+            Completed
           </button>
         </div>
 
@@ -554,7 +565,7 @@ const totalAmount = serviceAmount + platformFee;
                             onClick={() => handlePayment(booking)}
                             className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm font-semibold"
                           >
-                             Pay Now ₹
+                            Pay Now ₹
                             {(booking.price || booking.totalAmount || 0) +
                               Math.round(
                                 (booking.price || booking.totalAmount || 0) *
@@ -635,7 +646,6 @@ const totalAmount = serviceAmount + platformFee;
               </div>
 
               <div className="border-t pt-4">
-                
                 <div className="flex justify-between">
                   <span>Service Fee</span>
                   <span>₹{serviceAmount.toFixed(2)}</span>
@@ -647,7 +657,7 @@ const totalAmount = serviceAmount + platformFee;
                 <div className="flex justify-between font-semibold text-lg mt-2">
                   <span>Total</span>
                   <span className="text-primary-600">
-                  ₹{totalAmount.toFixed(2)}
+                    ₹{totalAmount.toFixed(2)}
                   </span>
                 </div>
               </div>
