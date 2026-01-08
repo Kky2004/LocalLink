@@ -39,6 +39,10 @@ exports.verifyPayment = async (req, res) => {
     );
      console.log("VERIFY SUCCESS:", payment);
 
+     payment.status = "COMPLETED";
+    payment.razorpayPaymentId = razorpayPaymentId;
+    await payment.save();
+
     res.json(payment);
 
   } catch (error) {
