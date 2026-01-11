@@ -69,7 +69,7 @@ useEffect(() => {
       setSuccess('Profile updated successfully!');
       setIsEditing(false);
       setTimeout(() => setSuccess(''), 3000);
-      window.location.reload();
+       navigate("/profile");
     } catch (err) {
       setError(
         err.response?.data?.message ||
