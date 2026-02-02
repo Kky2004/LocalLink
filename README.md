@@ -92,7 +92,9 @@ cd ../client
 npm install
 npm start
 
----
-<img width="1896" height="862" alt="image" src="https://github.com/user-attachments/assets/3ec3aa1f-1d0e-4c98-b939-9c6426a9ec67" />
+```
+
+## Screenshots
+<img width="1896" height="862" alt="Screenshot 2026-02-02 211733" src="https://github.com/user-attachments/assets/64fb5969-ebc9-4661-b4ff-6b5d3642dcfe" />
 
 
