@@ -94,7 +94,7 @@ npm start
 
 ```
 
-## Screenshots
+## 🎯 Project Preview
 <img width="1896" height="862" alt="Screenshot 2026-02-02 211733" src="https://github.com/user-attachments/assets/64fb5969-ebc9-4661-b4ff-6b5d3642dcfe" />
 
 
